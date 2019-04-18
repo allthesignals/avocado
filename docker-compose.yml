@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  database:
+    image: kartoza/postgis
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=docker
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db_init:/docker-entrypoint-initdb.d
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+  tiler:
+    build:
+      context: ./tiler
+      dockerfile: Dockerfile 
+    volumes:
+      - ./tiler:/src
+      - /src/node_modules
+    ports:
+      - 4444:3000
+  #query_api:
+    #build:
+      #context: ./query_api 
+      #dockerfile: Dockerfile 
+  #import_export:
+    #build:
+      #context: ./import_export 
+      #dockerfile: Dockerfile 
+
+
+networks:
+  modular:
+
+volumes:
+  db_data:
