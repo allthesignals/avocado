@@ -1,6 +1,6 @@
 # What is this?
 
-This is an attempt to create a mapping stack that is modular, runs on docker / kube(?), blockchain (jk) and can do a lot of cool stuff 
+This is an attempt to create a mapping stack that is modular, runs on docker / kube(?), blockchain(jk), and can do a lot of cool stuff.
 
 ## What does this consist of 
 
@@ -12,6 +12,6 @@ This is an attempt to create a mapping stack that is modular, runs on docker / k
 -
 ## Can I contribute 
 
-Probably 
+Probably  u can
 
 
