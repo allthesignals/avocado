@@ -20,11 +20,10 @@ const performQueryWithGeojson = async (db, query, options = {}) => {
         'geometry',   ST_AsGeoJSON(${geometry})::jsonb,
         'properties', to_jsonb(inputs) - '${identifier}' - '${geometry}'
       ) AS feature
-      FROM (${query}) inputs) features;
+      FROM (${query}) inputs
+    ) features;
   `;
-  const result = await db.one(queryStr);
-  console.log('result is ',result)
-  return result 
+  return await db.one(queryStr);
 };
 
 router.get('/', async ctx => {
@@ -40,7 +39,7 @@ router.get('/query', async ctx => {
   switch (format) {
     case 'geojson':
       ctx.body = await performQueryWithGeojson(db, q);
-      break
+      break;
     default:
       ctx.body = await db.any(q);
   }
