@@ -30,7 +30,8 @@ const performQueryWithGeojson = async (db,query,options) => {
         'geometry',   ST_AsGeoJSON(${geometry})::jsonb,
         'properties', to_jsonb(inputs) - '${identifier}' - '${geometry}'
       ) AS feature
-      FROM (${query}) inputs) features;
+      FROM (${query}) inputs
+    ) features;
   `)
 }
 
